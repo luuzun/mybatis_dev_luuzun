@@ -101,3 +101,7 @@ INSERT INTO COURSE_ENROLLMENT (COURSE_ID,STUD_ID) VALUES
  SELECT * FROM students;
  SELECT * FROM tutors;
  SELECT * FROM addresses;
+
+ SELECT stud_id, name, email, phone, dob FROM students;
+ 
+ update students set name="바보" ,email="@@" ,phone="123" ,dob="2000-11-11" where stud_id = 2;

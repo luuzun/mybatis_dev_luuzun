@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.dgit.mybatis_dev_luuzun.dao.StudentMapper">
+	
+	<sql id="selectSql">
+		SELECT stud_id, name, email, phone, dob FROM students 
+	</sql>
+
+	<sql id="updateSql">
+		update students set name=#{name},email=#{email},phone=#{phone},dob=#{dob} 
+	</sql>
+
+	<sql id="insertSql">
+		insert into students (stud_id, name, email, phone, dob) values(#{studId}, #{name},#{email},#{phone},#{dob}) 
+	</sql>
+	
+	<sql id="deleteSql">
+		delete from students
+	</sql>
+
+	<sql id="whereSql">
+		<where>
+			<if test="studId != null">
+				stud_id = #{studId};													
+			</if>		
+		</where>	
+	</sql>
+	
+	<resultMap type="Student" id="StudentResult">
+		<id property="studId" column="stud_id"/>
+		<result property="name" column="name"/>
+		<result property="email" column="email"/>
+	</resultMap>
+	
+	<select id="selectStudentByNoForResultMap" parameterType="student" resultMap="StudentResult">
+		<include refid="selectSql" />
+		<include refid="whereSql" />
+	</select>
+	
+	<select id="selectStudentByAllForResultMap" resultMap="StudentResult">
+		<include refid="selectSql" />
+	</select>
+
+</mapper>
