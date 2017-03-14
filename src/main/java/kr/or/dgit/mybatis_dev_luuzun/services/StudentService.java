@@ -1,8 +1,7 @@
 package kr.or.dgit.mybatis_dev_luuzun.services;
 import java.util.List;
+import java.util.Map;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.logging.Log;
 import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSession;
@@ -26,6 +25,34 @@ public class StudentService {
 		log.debug("selectStudentByAllForResultMap()");
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
 			return sqlSession.getMapper(StudentMapper.class).selectStudentByAllForResultMap();
+		}
+	}
+	
+	public Map<String, Object> selectStudentByNoForHashMap(Student student){
+		log.debug("selectStudentByNoForHashMap()");
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			return sqlSession.selectOne(namespace+".selectStudentByNoForHashMap",student);
+		}
+	}
+ 
+	public List<Map<String, Object>> selectStudentByAllForHashMap(){
+		log.debug("selectStudentByAllForHashMap()");
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			return sqlSession.selectList(namespace+".selectStudentByAllForHashMap");
+		}
+	}
+	
+	public Student selectStudentByNoWithAddress(Student student){
+		log.debug("selectStudentByNoWithAddress()");
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			return sqlSession.selectOne(namespace+".selectStudentByNoWithAddress",student);
+		}
+	}
+	
+	public Student selectStudentByNoAssociationAddress(Student student){
+		log.debug("StudentResultAssociation()");
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			return sqlSession.selectOne(namespace+".selectStudentByNoAssociationAddress",student);
 		}
 	}
 }

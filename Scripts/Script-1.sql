@@ -105,3 +105,7 @@ INSERT INTO COURSE_ENROLLMENT (COURSE_ID,STUD_ID) VALUES
  SELECT stud_id, name, email, phone, dob FROM students;
  
  update students set name="바보" ,email="@@" ,phone="123" ,dob="2000-11-11" where stud_id = 2;
+ 
+ SELECT STUD_ID, NAME, EMAIL, PHONE, DOB, a.ADDR_ID, street, city, state, zip, country 
+ FROM students s LEFT JOIN addresses a ON s.ADDR_ID = a.ADDR_ID
+ WHERE stud_id = 1;

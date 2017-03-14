@@ -7,6 +7,7 @@ public class Student {
 	private String email;
 	private Date dob;
 	private PhoneNumber phone;
+	private Address address;
 	
 	public Student() {}
 
@@ -50,6 +51,14 @@ public class Student {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public Address getAddres() {
+		return address;
+	}
+
+	public void setAddres(Address address) {
+		this.address = address;
+	}
+
 	public Date getDob() {
 		return dob;
 	}
@@ -59,6 +68,6 @@ public class Student {
 	
 	@Override
 	public String toString() {
-		return String.format("%s, %s, %s, %s, %s", studId, name, email, dob, phone);
+		return String.format("%s, %s, %s, %s, %s, %s", studId, name, email, dob, phone, address);
 	}
 }

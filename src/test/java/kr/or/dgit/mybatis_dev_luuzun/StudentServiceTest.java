@@ -1,8 +1,9 @@
 package kr.or.dgit.mybatis_dev_luuzun;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -41,13 +42,13 @@ public class StudentServiceTest {
 		System.out.println("tearDown()");
 	}
 	
-	@Test
+/*	@Test
 	public void selectStudentByNoForResultMap() {
 		Student std = new Student();
 		std.setStudId(1);
 		
-		Student findStd = studentService.selectStudentByNoForResultMap(std);
-		Assert.assertNotNull(findStd);
+		Student selectStudent = studentService.selectStudentByNoForResultMap(std);
+		Assert.assertNotNull(selectStudent);
 	}
 	
 	@Test
@@ -55,5 +56,49 @@ public class StudentServiceTest {
 		List<Student> lists = studentService.selectStudentByAllForResultMap();
 		List<Student> empty = Collections.emptyList();
 		Assert.assertNotEquals(lists, empty);	
+	}
+	*/
+	//
+	
+//	@Test
+//	public void selectStudentByNoForHashMap() {
+//		Student std = new Student();
+//		std.setStudId(1);
+//		
+//		Map<String, Object> selectStudent = studentService.selectStudentByNoForHashMap(std);
+//		for(Entry<String, Object> e: selectStudent.entrySet()){
+//			System.out.printf("<%s : %s> \n",e.getKey(), e.getValue());
+//		}
+//		Assert.assertNotNull(selectStudent);
+//	}
+//	
+//	@Test
+//	public void pTestselectStudentByAllForHashMap(){
+//		List<Map<String, Object>> lists = studentService.selectStudentByAllForHashMap();
+//		List<Map<String, Object>> empty = Collections.emptyList();
+//		for(Map<String,Object> map : lists){
+//			for(Entry<String, Object> e: map.entrySet()){
+//				System.out.printf("<%s : %s> \n",e.getKey(), e.getValue());
+//			}
+//		}
+//		Assert.assertNotEquals(empty, lists);	
+//	}
+	
+/*	@Test
+	public void selectStudentByNoWithAddress() {
+		Student std = new Student();
+		std.setStudId(1);
+		
+		Student selectStudent = studentService.selectStudentByNoWithAddress(std);
+		Assert.assertNotNull(selectStudent);
+	}*/
+	
+	@Test
+	public void TestSelectStudentByNoAssociationAddress() {
+		Student std = new Student();
+		std.setStudId(1);
+		
+		Student selectStudent = studentService.selectStudentByNoAssociationAddress(std);
+		Assert.assertNotNull(selectStudent);
 	}
 }

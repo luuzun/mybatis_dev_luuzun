@@ -30,7 +30,34 @@
 		<id property="studId" column="stud_id"/>
 		<result property="name" column="name"/>
 		<result property="email" column="email"/>
+		<result property="phone" column="phone"/>
+		<result property="dob" column="dob"/>
 	</resultMap>
+	
+	<resultMap type="Student" id="StudentResultExtends" extends="StudentResult">
+		<result property="address.addrId" column="addr_id"/>
+		<result property="address.street" column="street"/>
+		<result property="address.city" column="city"/>
+		<result property="address.state" column="state"/>
+		<result property="address.zip" column="zip"/>
+		<result property="address.country" column="country"/>
+	</resultMap>
+
+	<resultMap type="Student" id="StudentResultAssociation" extends="StudentResult">
+		<association property="address" resultMap="kr.or.dgit.mybatis_dev_luuzun.dao.AddressMapper.AddressResult" />
+	</resultMap>
+	
+	<select id="selectStudentByNoAssociationAddress" parameterType="Student" resultMap="StudentResultAssociation">
+		 SELECT STUD_ID, NAME, EMAIL, PHONE, DOB, a.ADDR_ID, street, city, state, zip, country 
+		 FROM students s LEFT JOIN addresses a ON s.ADDR_ID = a.ADDR_ID
+		 <include refid="whereSql" />
+	</select>
+	
+	<select id="selectStudentByNoWithAddress" parameterType="Student" resultMap="StudentResultExtends">
+		SELECT STUD_ID, NAME, EMAIL, PHONE, DOB, a.ADDR_ID, street, city, state, zip, country 
+ 		FROM students s LEFT JOIN addresses a ON s.ADDR_ID = a.ADDR_ID
+ 		<include refid="whereSql" />
+	</select>
 	
 	<select id="selectStudentByNoForResultMap" parameterType="student" resultMap="StudentResult">
 		<include refid="selectSql" />
@@ -38,6 +65,17 @@
 	</select>
 	
 	<select id="selectStudentByAllForResultMap" resultMap="StudentResult">
+		<include refid="selectSql" />
+	</select>
+	
+	
+	
+	<select id="selectStudentByNoForHashMap" parameterType="student" resultType="map">
+		<include refid="selectSql" />
+		<include refid="whereSql" />
+	</select>
+	
+	<select id="selectStudentByAllForHashMap" resultType="map">
 		<include refid="selectSql" />
 	</select>
 
