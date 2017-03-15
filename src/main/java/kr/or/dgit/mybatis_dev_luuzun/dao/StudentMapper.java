@@ -16,4 +16,6 @@ public interface StudentMapper {
 	List<Student> selectStudentByAllWithAddress();
 	
 	Student selectStudentByNoAssociationAddress(Student student);
+	
+	int updateSetStudent(Student student);
 }

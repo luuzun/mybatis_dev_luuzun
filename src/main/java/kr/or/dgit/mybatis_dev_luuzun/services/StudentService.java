@@ -55,4 +55,11 @@ public class StudentService {
 			return sqlSession.selectOne(namespace+".selectStudentByNoAssociationAddress",student);
 		}
 	}
+	
+	public int updateSetStudent(Student student){
+		log.debug("updateSetStudent()");
+		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
+			return sqlSession.selectOne(namespace+".updateSetStudent",student);
+		}
+	}
 }

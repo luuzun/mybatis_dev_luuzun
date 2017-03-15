@@ -1,6 +1,8 @@
 package kr.or.dgit.mybatis_dev_luuzun;
 
 import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -14,7 +16,11 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import kr.or.dgit.mybatis_dev_luuzun.dto.Course;
+import kr.or.dgit.mybatis_dev_luuzun.dto.PhoneNumber;
 import kr.or.dgit.mybatis_dev_luuzun.dto.Student;
+import kr.or.dgit.mybatis_dev_luuzun.dto.Tutor;
+import kr.or.dgit.mybatis_dev_luuzun.services.CourseService;
 import kr.or.dgit.mybatis_dev_luuzun.services.StudentService;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING) //메서드 이름 순서대로 Test
@@ -93,12 +99,19 @@ public class StudentServiceTest {
 		Assert.assertNotNull(selectStudent);
 	}*/
 	
-	@Test
+/*	@Test
 	public void TestSelectStudentByNoAssociationAddress() {
 		Student std = new Student();
 		std.setStudId(1);
 		
 		Student selectStudent = studentService.selectStudentByNoAssociationAddress(std);
 		Assert.assertNotNull(selectStudent);
+	}*/
+	
+	@Test
+	public void updateSetStudent() {
+		Student student = new Student(10, "test", "@@@", new Date(), new PhoneNumber("555-5555-55"));
+		int res = studentService.updateSetStudent(student);
+		Assert.assertNotNull(res);
 	}
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.dgit.mybatis_dev_luuzun.dao.TutorMapper">
+	<resultMap type="Tutor" id="TutorResult">
+		<id property="tutorId" column="tutor_id"/>
+		<result property="name" column="tutor_name"/>
+		<result property="email" column="email"/>
+		<collection property="courses" resultMap="kr.or.dgit.mybatis_dev_luuzun.dao.CourseMapper.CourseResult"
+	</resultMap>
+	
+	<select id = "findTutorById" parameterType="Tutor" resultMap="TutorResult">
+		SELECT t.TUTOR_ID, t.NAME AS TUTOR_name, EMAIL,c.COURSE_ID, c.NAME, description, start_date, end_date 
+			FROM Tutors T LEFT OUTER JOIN addresses a ON t.ADDR_ID=A.ADDR_ID
+			LEFT OUTER JOIN courses c ON t.TUTOR_ID=c.TUTOR_ID
+			WHERE t.TUTOR_ID = #{tutorId};
+	</select>
+</mapper>

@@ -109,3 +109,20 @@ INSERT INTO COURSE_ENROLLMENT (COURSE_ID,STUD_ID) VALUES
  SELECT STUD_ID, NAME, EMAIL, PHONE, DOB, a.ADDR_ID, street, city, state, zip, country 
  FROM students s LEFT JOIN addresses a ON s.ADDR_ID = a.ADDR_ID
  WHERE stud_id = 1;
+ 
+ SELECT t.TUTOR_ID, t.NAME AS TUTOR_name, EMAIL,c.COURSE_ID, c.NAME, description, start_date, end_date 
+ FROM Tutors T LEFT OUTER JOIN addresses a ON t.ADDR_ID=A.ADDR_ID
+ 	LEFT OUTER JOIN courses c ON t.TUTOR_ID=c.TUTOR_ID
+ WHERE t.TUTOR_ID = 1;
+ 
+ 
+ SELECT * FROM courses
+ WHERE TUTOR_ID = 1 AND name LIKE '%java%' 
+ AND START_DATE >= "2013-01-01"
+ AND END_DATE <= "2013-09-01";
+ 
+ SELECT * FROM courses
+ WHERE TUTOR_ID IN (1,2);
+ 
+ SELECT * FROM students;
+ INSERT INTO students (STUD_ID, NAME, EMAIL, DOB, PHONE )VALUES ("11", "luuzun5", "@@", "2000-11-11", "123-1234-1234"); 
