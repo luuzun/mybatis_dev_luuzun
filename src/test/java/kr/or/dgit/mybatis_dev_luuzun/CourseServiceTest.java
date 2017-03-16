@@ -1,9 +1,10 @@
 package kr.or.dgit.mybatis_dev_luuzun;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,21 +15,22 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import kr.or.dgit.mybatis_dev_luuzun.dto.Course;
-import kr.or.dgit.mybatis_dev_luuzun.dto.Gender;
-import kr.or.dgit.mybatis_dev_luuzun.dto.Tutor;
+import kr.or.dgit.mybatis_dev_luuzun.dto.UserPic;
 import kr.or.dgit.mybatis_dev_luuzun.services.CourseService;
 import kr.or.dgit.mybatis_dev_luuzun.services.TutorService;
+import kr.or.dgit.mybatis_dev_luuzun.services.UserPicService;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING) //메서드 이름 순서대로 Test
 public class CourseServiceTest {
 	private static CourseService courseService;
 	private static TutorService tutorService;
+	private static UserPicService userPicService;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		System.out.println("setUpBeforClass()");
 		courseService = new CourseService();
 		tutorService = new TutorService();
+		userPicService = new UserPicService();
 	}
 
 	@AfterClass
@@ -90,7 +92,7 @@ public class CourseServiceTest {
         Assert.assertNotNull(searchCourse);
      }*/
 	 
-	 @Test
+/*	 @Test
      public void searchForeachCoursesByTutors() {
 		List<Integer> tutorIds = new ArrayList<>();
 		tutorIds.add(1);
@@ -114,5 +116,22 @@ public class CourseServiceTest {
 		Tutor tutor = new Tutor(12, "이교민", "jsw@test.co.kr", Gender.FEMALE);
 		int res = tutorService.insertTutor(tutor);
         Assert.assertEquals(1, res);
-     }
+     }*/
+	
+	@Test
+    public void Test() {
+		byte[] pic = null;
+		File file = new File(System.getProperty("user.dir")+"\\DataFiles\\kms.jpg");
+		try (InputStream is = new FileInputStream(file);){
+			pic = new byte[is.available()];
+			is.read(pic);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		UserPic userPic = new UserPic(1,"김민수",pic,"...");
+		int res = userPicService.insertUserPic(userPic);
+		Assert.assertEquals(1, res);
+	}
 }
