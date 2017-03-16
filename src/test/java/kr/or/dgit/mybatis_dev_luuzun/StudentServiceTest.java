@@ -108,10 +108,10 @@ public class StudentServiceTest {
 		Assert.assertNotNull(selectStudent);
 	}*/
 	
-	@Test
+	/*@Test
 	public void updateSetStudent() {
 		Student student = new Student(10, "test", "@@@", new Date(), new PhoneNumber("555-5555-55"));
 		int res = studentService.updateSetStudent(student);
 		Assert.assertNotNull(res);
-	}
+	}*/
 }
