@@ -17,6 +17,6 @@ public class TutorMapperImpl implements TutorMapper{
 	@Override
 	public int insertTutor(Tutor tutor) {
 		log.debug("insertTutor()");
-		return sqlSession.selectOne(namespace+".insertTutor",tutor);
+		return sqlSession.insert(namespace+".insertTutor",tutor);
 	}
 }

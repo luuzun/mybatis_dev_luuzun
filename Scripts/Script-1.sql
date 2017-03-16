@@ -130,4 +130,15 @@ INSERT INTO COURSE_ENROLLMENT (COURSE_ID,STUD_ID) VALUES
  ALTER TABLE mybatis_dev.students ADD gender varchar(10) NULL ;
 ALTER TABLE mybatis_dev.students ADD gender varchar(10) NULL ;
 
-DESC tutors;
+SELECT * FROM tutors;
+DELETE FROM tutors WHERE TUTOR_ID=12;
+
+CREATE TABLE user_pics(
+	id int(11) NOT NULL auto_increment,
+	name varchar(50) DEFAULT NULL,
+	pic blob,
+	bio LONGTEXT,
+	PRIMARY key(id)
+);
+
+DESC user_pics();

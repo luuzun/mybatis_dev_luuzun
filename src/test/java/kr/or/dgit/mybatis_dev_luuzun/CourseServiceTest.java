@@ -113,6 +113,6 @@ public class CourseServiceTest {
      public void TestinsertTutor() {
 		Tutor tutor = new Tutor(12, "이교민", "jsw@test.co.kr", Gender.FEMALE);
 		int res = tutorService.insertTutor(tutor);
-        Assert.assertNotEquals(res, 1);
+        Assert.assertEquals(1, res);
      }
 }
