@@ -3,8 +3,10 @@ package kr.or.dgit.mybatis_dev_luuzun;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -119,7 +121,7 @@ public class CourseServiceTest {
      }*/
 	
 	@Test
-    public void Test() {
+    public void TestInsertPic() {
 		byte[] pic = null;
 		File file = new File(System.getProperty("user.dir")+"\\DataFiles\\kms.jpg");
 		try (InputStream is = new FileInputStream(file);){
@@ -130,8 +132,24 @@ public class CourseServiceTest {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		UserPic userPic = new UserPic(1,"김민수",pic,"...");
+		UserPic userPic = new UserPic(1,"KMS",pic,"...");
 		int res = userPicService.insertUserPic(userPic);
 		Assert.assertEquals(1, res);
+	}
+	
+	@Test
+    public void TestSelectPic() {
+		UserPic userPic = userPicService.selectUserPicById(1);
+		byte[] pic = userPic.getPic();
+		File file = new File(System.getProperty("user.dir")+"\\Download\\KMS.jpg");
+		try (OutputStream os = new FileOutputStream(file);){
+			os.write(pic);
+			os.flush();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		Assert.assertNotNull(pic);
 	}
 }

@@ -142,3 +142,4 @@ CREATE TABLE user_pics(
 );
 
 DESC user_pics();
+SELECT * FROM user_pics;

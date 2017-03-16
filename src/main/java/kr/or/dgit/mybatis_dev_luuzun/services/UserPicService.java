@@ -15,11 +15,13 @@ public class UserPicService {
 	public int insertUserPic(UserPic userPic) {
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession();){
 			UserMapperImpl userMapperImpl = new UserMapperImpl(sqlSession);
-			return userMapperImpl.insertUserPic(userPic);
+			int res =  userMapperImpl.insertUserPic(userPic);
+			sqlSession.commit();
+			return res;
 		}
 	}
 
-	public Student selectUserPicById(int id){
+	public UserPic selectUserPicById(int id){
 		log.debug("selectUserPicById()");
 		try(SqlSession sqlSession = MybatisSqlSessionFactory.openSession()){
 			return sqlSession.selectOne(namespace+".selectUserPicById",id);
