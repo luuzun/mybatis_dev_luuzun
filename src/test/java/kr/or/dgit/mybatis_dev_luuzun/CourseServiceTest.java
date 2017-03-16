@@ -15,16 +15,20 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import kr.or.dgit.mybatis_dev_luuzun.dto.Course;
+import kr.or.dgit.mybatis_dev_luuzun.dto.Gender;
+import kr.or.dgit.mybatis_dev_luuzun.dto.Tutor;
 import kr.or.dgit.mybatis_dev_luuzun.services.CourseService;
+import kr.or.dgit.mybatis_dev_luuzun.services.TutorService;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING) //메서드 이름 순서대로 Test
 public class CourseServiceTest {
 	private static CourseService courseService;
-	
+	private static TutorService tutorService;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		System.out.println("setUpBeforClass()");
 		courseService = new CourseService();
+		tutorService = new TutorService();
 	}
 
 	@AfterClass
@@ -103,5 +107,12 @@ public class CourseServiceTest {
         	Assert.assertNotNull(courses);
         	System.out.println(course);
         }
+     }
+	 
+	 @Test
+     public void TestinsertTutor() {
+		Tutor tutor = new Tutor(12, "이교민", "jsw@test.co.kr", Gender.FEMALE);
+		int res = tutorService.insertTutor(tutor);
+        Assert.assertNotEquals(res, 1);
      }
 }

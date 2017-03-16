@@ -125,4 +125,9 @@ INSERT INTO COURSE_ENROLLMENT (COURSE_ID,STUD_ID) VALUES
  WHERE TUTOR_ID IN (1,2);
  
  SELECT * FROM students;
- INSERT INTO students (STUD_ID, NAME, EMAIL, DOB, PHONE )VALUES ("11", "luuzun5", "@@", "2000-11-11", "123-1234-1234"); 
+ INSERT INTO students (STUD_ID, NAME, EMAIL, DOB, PHONE )VALUES ("11", "luuzun5", "@@", "2000-11-11", "123-1234-1234");
+ 
+ ALTER TABLE mybatis_dev.students ADD gender varchar(10) NULL ;
+ALTER TABLE mybatis_dev.students ADD gender varchar(10) NULL ;
+
+DESC tutors;

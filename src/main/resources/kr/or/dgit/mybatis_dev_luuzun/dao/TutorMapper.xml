@@ -5,7 +5,7 @@
 		<id property="tutorId" column="tutor_id"/>
 		<result property="name" column="tutor_name"/>
 		<result property="email" column="email"/>
-		<collection property="courses" resultMap="kr.or.dgit.mybatis_dev_luuzun.dao.CourseMapper.CourseResult"
+		<collection property="courses" resultMap="kr.or.dgit.mybatis_dev_luuzun.dao.CourseMapper.CourseResult"></collection>
 	</resultMap>
 	
 	<select id = "findTutorById" parameterType="Tutor" resultMap="TutorResult">
@@ -14,4 +14,9 @@
 			LEFT OUTER JOIN courses c ON t.TUTOR_ID=c.TUTOR_ID
 			WHERE t.TUTOR_ID = #{tutorId};
 	</select>
+	
+	<insert id="insertTutor" parameterType="Tutor">
+		Insert into tutors(tutor_id, name, email, gender)
+		values (#{tutorId},#{name},#{email},#{gender})
+	</insert>
 </mapper>

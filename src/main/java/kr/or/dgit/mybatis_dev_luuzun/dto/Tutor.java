@@ -8,11 +8,20 @@ public class Tutor {
 	private String email;
 	private Address address;
 	private List<Course> courses;
+	private Gender gender;
 	
+	
+	public Tutor(int tutorId, String name, String email, Gender gender) {
+		this.tutorId = tutorId;
+		this.name = name;
+		this.email = email;
+		this.gender = gender;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("%s, %s, %s, %s, %s", tutorId, name, email,
-				address, courses);
+		return String.format("%s, %s, %s, %s, %s, %s", tutorId, name, email,
+				address, courses, gender);
 	}
 	
 	public int getTutorId() {
